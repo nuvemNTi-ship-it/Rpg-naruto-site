@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>RPG Naruto Online - Portal de Gestão NTEi</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --naruto-orange: #ff6600;
+            --naruto-dark: #1a1a1a;
+            --gray-light: #222;
+        }
+
+        body { background-color: #000; color: #ddd; font-family: 'Nunito', sans-serif; }
+
+        /* --- BARRA DE ACESSIBILIDADE SUPERIOR (ESTILO PREFEITURA) --- */
+        .top-admin-bar { background: #111; color: #888; padding: 5px 0; font-size: 11px; border-bottom: 1px solid #333; }
+        .top-admin-bar a { color: #888; text-decoration: none; margin-left: 15px; transition: 0.3s; }
+        .top-admin-bar a:hover { color: var(--naruto-orange); }
+
+        /* --- NAVBAR --- */
+        .navbar-ntei { background-color: rgba(0,0,0,0.9) !important; border-bottom: 3px solid var(--naruto-orange); padding: 15px 0; }
+        .nav-link { font-weight: 700; text-transform: uppercase; color: #fff !important; margin: 0 10px; }
+        .nav-link:hover { color: var(--naruto-orange) !important; }
+
+        /* --- HERO SECTION --- */
+        .hero-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.alphacoders.com/161/161471.jpg'); 
+            background-size: cover; background-position: center top -20px;
+            min-height: 60vh; display: flex; align-items: center; text-align: center;
+        }
+
+        /* --- BARRA DE PESQUISA GRANDE --- */
+        .search-main {
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px);
+            border: 2px solid var(--naruto-orange); border-radius: 50px;
+            padding: 10px; max-width: 800px; margin: 0 auto 40px; display: flex;
+        }
+        .search-main input { background: transparent; border: none; color: white; padding-left: 20px; flex-grow: 1; outline: none; font-size: 1.1rem; }
+
+        /* --- GRID DE SERVIÇOS (BOTÕES REDONDOS ESTILO PREFEITURA) --- */
+        .service-box { text-align: center; margin-bottom: 30px; text-decoration: none; display: block; }
+        .service-circle {
+            width: 100px; height: 100px; background: #111; border: 2px solid #333;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 15px; font-size: 35px; color: var(--naruto-orange);
+            transition: 0.3s; box-shadow: 0 0 15px rgba(255, 102, 0, 0.1);
+        }
+        .service-box:hover .service-circle { background: var(--naruto-orange); color: #000; transform: translateY(-10px); }
+        .service-box p { color: #fff; font-weight: 800; font-size: 0.85rem; letter-spacing: 1px; }
+
+        /* --- SEÇÃO DE NOTÍCIAS E FEED --- */
+        .section-title { font-family: 'Oswald'; border-left: 5px solid var(--naruto-orange); padding-left: 15px; margin-bottom: 30px; }
+        .card-news { background: #111; border: 1px solid #222; border-radius: 10px; overflow: hidden; transition: 0.3s; }
+        .card-news:hover { border-color: var(--naruto-orange); }
+        .news-img { height: 180px; background: #222; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #333; }
+
+        /* --- RODAPÉ GIGANTE (ESTILO SITE DE SANTANA DE PARNAÍBA) --- */
+        .ntei-footer { background: #080a11; padding: 80px 0 30px; border-top: 5px solid var(--naruto-orange); }
+        .footer-col h5 { color: #fff; font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 25px; font-size: 1.1rem; }
+        .footer-links a { color: #888; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.9rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--naruto-orange); padding-left: 5px; }
+        
+        .social-box a { 
+            width: 40px; height: 40px; line-height: 40px; text-align: center; 
+            background: #1a1e2b; border-radius: 5px; display: inline-block; color: #fff; margin-right: 8px; transition: 0.3s;
+        }
+        .social-box a:hover { background: var(--naruto-orange); }
+
+        .newsletter-footer { background: #111; border: 1px solid #333; border-radius: 5px; display: flex; overflow: hidden; }
+        .newsletter-footer input { background: transparent; border: none; padding: 12px; color: #fff; flex-grow: 1; outline: none; }
+        .newsletter-footer button { background: var(--naruto-orange); border: none; color: #000; padding: 0 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="top-admin-bar">
+    <div class="container d-flex justify-content-between">
+        <div><i class="fa fa-microchip me-2"></i> Núcleo de Tecnologia e Inovação - NTEi</div>
+        <div>
+            <a href="#">Portal da Transparência</a>
+            <a href="#">Ouvidoria</a>
+            <a href="#">Acessibilidade</a>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-ntei sticky-top">
+    <div class="container">
+        <a href="#" class="navbar-brand"><h2 class="m-0 text-white">NTEi<span style="color:var(--naruto-orange)"> SHINOBI</span></h2></a>
+        <div class="navbar-nav ms-auto">
+            <a href="#" class="nav-item nav-link">Gabinete Central</a>
+            <a href="#" class="nav-item nav-link">Cidadão Ninja</a>
+            <a href="#" class="nav-item nav-link">Servidores</a>
+            <a href="#" class="nav-item nav-link text-warning">Entrar no RPG</a>
+        </div>
+    </div>
+</nav>
+
+<div class="hero-header">
+    <div class="container">
+        <h1 class="display-3 fw-bold text-white mb-4" style="font-family:'Oswald';">O QUE VOCÊ PROCURA?</h1>
+        <div class="search-main">
+            <input type="text" placeholder="Pesquisar Jutsus, Exames, Resultados de Missões ou Clãs...">
+            <button class="btn btn-warning rounded-pill px-5 fw-bold"><i class="fa fa-search me-2"></i> BUSCAR</button>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-n5" style="margin-top: -60px; position: relative; z-index: 10;">
+    <div class="row g-4 justify-content-center">
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="konoha.html" class="service-box">
+                <div class="service-circle"><i class="fa fa-leaf"></i></div>
+                <p>KONOHA</p>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="suna.html" class="service-box">
+                <div class="service-circle"><i class="fa fa-sun"></i></div>
+                <p>SUNA</p>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="kumo.html" class="service-box">
+                <div class="service-circle"><i class="fa fa-bolt"></i></div>
+                <p>KUMO</p>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="kiri.html" class="service-box">
+                <div class="service-circle"><i class="fa fa-water"></i></div>
+                <p>KIRI</p>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="ame.html" class="service-box">
+                <div class="service-circle"><i class="fa fa-cloud-showers-heavy"></i></div>
+                <p>AME</p>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="mun.html" class="service-box">
+                <div class="service-circle"><i class="fa fa-moon"></i></div>
+                <p>MUN</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<section class="py-5" style="background:#050505">
+    <div class="container text-center py-4">
+        <h2 class="section-title d-inline-block px-3">Sede Administrativa - Gestão Digital</h2>
+        <p class="mt-4 fs-5 text-secondary mx-auto" style="max-width: 900px;">
+            Bem-vindo ao Portal Oficial de Serviços Shinobi. Este sistema foi integralmente desenvolvido pelo **Nuvem**, através do **NTEi (Núcleo de Tecnologia e Inovação)**, inaugurado em 18/03/2026. Nosso objetivo é fornecer a infraestrutura tecnológica para que cada ninja possa trilhar o seu caminho através do nosso sistema exclusivo de RPG baseado em cards.
+        </p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h3 class="section-title">ÚLTIMAS NOTÍCIAS</h3>
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card-news">
+                    <div class="news-img"><i class="fa fa-code"></i></div>
+                    <div class="p-3">
+                        <span class="text-warning small fw-bold">NTEi INFO</span>
+                        <h6 class="mt-2 text-white">Novo Sistema de Migração entre Vilas</h6>
+                        <p class="small text-secondary">A equipa de desenvolvimento do Nuvem implementou hoje a nova API de deslocamento ninja...</p>
+                        <a href="#" class="text-warning small text-decoration-none fw-bold">LER MAIS +</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card-news">
+                    <div class="news-img"><i class="fa fa-scroll"></i></div>
+                    <div class="p-3">
+                        <span class="text-danger small fw-bold">EDITAL</span>
+                        <h6 class="mt-2 text-white">Exames Chunin: Período de Inscrição</h6>
+                        <p class="small text-secondary">A Sede Administrativa abriu o edital para os ninjas que desejam subir de escalão nesta temporada...</p>
+                        <a href="#" class="text-warning small text-decoration-none fw-bold">LER MAIS +</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card-news">
+                    <div class="news-img"><i class="fa fa-shield-alt"></i></div>
+                    <div class="p-3">
+                        <span class="text-info small fw-bold">SEGURANÇA</span>
+                        <h6 class="mt-2 text-white">Atualização das Regras de Combate</h6>
+                        <p class="small text-secondary">O Databook oficial foi atualizado com as novas mecânicas de buffs e debuffs de clãs...</p>
+                        <a href="#" class="text-warning small text-decoration-none fw-bold">LER MAIS +</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="ntei-footer">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6 footer-links text-start">
+                <h5>Acesso Rápido</h5>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>Início</a>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>A Cidade (Municípios)</a>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>Portal do Servidor</a>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>Intranet Administrativa</a>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>FAQs</a>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>Mapa do Site</a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-links text-start">
+                <h5>Transparência</h5>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>Diário Oficial NTEi</a>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>Ranking de Missões</a>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>Carta de Jutsus</a>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>Termos de Privacidade</a>
+                <a href="#"><i class="fa fa-angle-right me-2"></i>Ouvidoria Geral</a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 text-start">
+                <h5>Sede Administrativa</h5>
+                <p class="small text-secondary mb-2"><i class="fa fa-map-marker-alt me-2 text-warning"></i>Setor de Inovação Digital - Nuvem Shinobi</p>
+                <p class="small text-secondary mb-2"><i class="fa fa-calendar-check me-2 text-warning"></i>Fundado em: 18 de Março de 2026</p>
+                <p class="small text-secondary mb-4"><i class="fa fa-envelope me-2 text-warning"></i>ntei.tecnologia@rpgonline.com</p>
+                
+                <h6 class="small text-uppercase fw-bold mb-3 text-white">Siga a página oficial:</h6>
+                <div class="social-box">
+                    <a href="https://www.instagram.com/rpgdenarutoonline?igsh=YmR2eHM3dWZtcXQ=" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 text-start">
+                <h5>Boletim de Missões</h5>
+                <p class="small text-secondary mb-3">Assine para receber convocações para eventos globais e atualizações do NTEi.</p>
+                <div class="newsletter-footer">
+                    <input type="text" placeholder="Seu e-mail">
+                    <button>OK</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-top border-secondary text-center small text-secondary">
+            <p class="mb-1">© 2026 <b>Plataforma de Serviços Digitais Shinobi</b></p>
+            <p class="mb-0">Sede Administrativa Central do RPG. Todos os direitos reservados.</p>
+            <p class="mt-2">Desenvolvido por: <b>Nuvem (NTEi)</b></p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
