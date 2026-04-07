@@ -15,14 +15,44 @@
         .navbar-ntei { background-color: rgba(0,0,0,0.9) !important; border-bottom: 3px solid var(--naruto-orange); padding: 15px 0; }
         .nav-link { font-weight: 700; text-transform: uppercase; color: #fff !important; margin: 0 10px; }
         .nav-link:hover, .nav-link.active { color: var(--naruto-orange) !important; }
+        
+        /* Hero Estilizado para o Gabinete */
         .hero-gabinete { 
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://wallpapers.com/images/featured/naruto-hokage-office-p7l3y8zg8m8p2n6e.jpg'); 
-            background-size: cover; background-position: center; padding: 100px 0; border-bottom: 1px solid #333;
+            background-size: cover; 
+            background-position: center;
+            padding: 100px 0;
+            border-bottom: 1px solid #333;
         }
+
         .section-title { font-family: 'Oswald'; border-left: 5px solid var(--naruto-orange); padding-left: 15px; margin-bottom: 30px; text-transform: uppercase; }
-        .kage-card { background: #111; border: 1px solid #222; border-radius: 15px; padding: 30px; transition: 0.4s; text-align: center; height: 100%; }
-        .kage-card:hover { border-color: var(--naruto-orange); transform: translateY(-10px); background: #161616; }
-        .kage-icon { width: 80px; height: 80px; line-height: 80px; background: #000; border: 2px solid var(--naruto-orange); border-radius: 50%; margin: 0 auto 20px; font-size: 30px; color: var(--naruto-orange); }
+        
+        /* Cards dos Kages (Prefeitos) */
+        .kage-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 30px;
+            transition: 0.4s;
+            text-align: center;
+            height: 100%;
+        }
+        .kage-card:hover {
+            border-color: var(--naruto-orange);
+            transform: translateY(-10px);
+            background: #161616;
+        }
+        .kage-icon {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background: #000;
+            border: 2px solid var(--naruto-orange);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: var(--naruto-orange);
+        }
         .ntei-footer { background: #080a11; padding: 60px 0 30px; border-top: 5px solid var(--naruto-orange); }
     </style>
 </head>
@@ -31,7 +61,10 @@
 <div class="top-admin-bar">
     <div class="container d-flex justify-content-between">
         <div><i class="fa fa-university me-2"></i> Gabinete Central de Gestão Shinobi</div>
-        <div><i class="fa fa-clock me-1"></i> 18/03/2026</div>
+        <div>
+            <span class="me-3">Brasília, Mundo Ninja</span>
+            <i class="fa fa-clock me-1"></i> 18/03/2026
+        </div>
     </div>
 </div>
 
@@ -50,51 +83,115 @@
 <header class="hero-gabinete text-center">
     <div class="container">
         <h1 class="display-4 fw-bold text-white mb-3" style="font-family:'Oswald';">CENTRO ESTRATÉGICO DE GOVERNANÇA</h1>
-        <p class="lead text-light mx-auto" style="max-width: 800px;">Coordenação Superior do NTEi: Onde a tradição dos Kages encontra a inovação digital.</p>
+        <p class="lead text-light mx-auto" style="max-width: 800px;">
+            O Gabinete Central é a autoridade máxima do NTEi, responsável pela integração tecnológica e diplomática entre as Nações. Aqui, o poder dos Kages se une à inovação para gerir o futuro da sociedade Shinobi.
+        </p>
     </div>
 </header>
 
-<section class="py-5">
+<section class="py-5 bg-dark">
     <div class="container">
-        <h3 class="section-title text-center mb-5">Governança Regional</h3>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="kage-card">
-                    <div class="kage-icon"><i class="fa fa-leaf"></i></div>
-                    <h4 class="text-white">HOKAGE</h4>
-                    <p class="text-warning small fw-bold">Presidente do Distrito do Fogo</p>
-                    <p class="small text-secondary">Gestão administrativa e defesa territorial de Konohagakure.</p>
-                    <hr class="border-secondary">
-                    <a href="portal.html?vila=konoha" class="btn btn-sm btn-outline-warning">Acessar Secretaria</a>
-                </div>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="section-title">Função Administrativa</h2>
+                <p>O **Gabinete Central** atua como a presidência do sistema NTEi. Sua missão é padronizar os processos de todas as vilas, desde a emissão de documentos de identidade ninja até a regulação de jutsus e exames de graduação.</p>
+                <p class="text-secondary">Através deste portal, o comando central monitora o status de cada vila, garantindo que a infraestrutura digital (SMENTEi) esteja operante para todos os cidadãos do continente.</p>
             </div>
-            <div class="col-md-4">
-                <div class="kage-card">
-                    <div class="kage-icon"><i class="fa fa-sun"></i></div>
-                    <h4 class="text-white">KAZEKAGE</h4>
-                    <p class="text-warning small fw-bold">Gestor do Distrito do Vento</p>
-                    <p class="small text-secondary">Controle de recursos e comércio árido de Sunagakure.</p>
+            <div class="col-lg-6">
+                <div class="p-4 rounded border border-secondary bg-black">
+                    <h5 class="text-warning"><i class="fa fa-bullhorn me-2"></i> Nota Oficial</h5>
+                    <p class="small">"A paz não é apenas a ausência de conflito, mas a presença de uma gestão eficiente. O NTEi é o selo que protege nossa organização."</p>
                     <hr class="border-secondary">
-                    <a href="portal.html?vila=suna" class="btn btn-sm btn-outline-warning">Acessar Secretaria</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="kage-card">
-                    <div class="kage-icon"><i class="fa fa-bolt"></i></div>
-                    <h4 class="text-white">RAIKAGE</h4>
-                    <p class="text-warning small fw-bold">Diretor do Distrito do Trovão</p>
-                    <p class="small text-secondary">Desenvolvimento tecnológico e infraestrutura de Kumogakure.</p>
-                    <hr class="border-secondary">
-                    <a href="portal.html?vila=kumo" class="btn btn-sm btn-outline-warning">Acessar Secretaria</a>
+                    <span class="small text-uppercase fw-bold">- Conselho Superior de Tecnologia</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<section class="py-5">
+    <div class="container">
+        <h3 class="section-title text-center mb-5">Governança Regional (Alta Cúpula)</h3>
+        <div class="row g-4">
+            
+            <div class="col-md-4">
+                <div class="kage-card">
+                    <div class="kage-icon"><i class="fa fa-leaf"></i></div>
+                    <h4 class="text-white">HOKAGE</h4>
+                    <p class="text-warning small fw-bold">Presidente do Distrito do Fogo</p>
+                    <p class="small text-secondary">Responsável pela gestão de Konohagakure e líder da coalizão de defesa territorial.</p>
+                    <hr class="border-secondary">
+                    <a href="portal.html?vila=konoha" class="btn btn-sm btn-outline-warning">Acessar Secretaria</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="kage-card">
+                    <div class="kage-icon"><i class="fa fa-sun"></i></div>
+                    <h4 class="text-white">KAZEKAGE</h4>
+                    <p class="text-warning small fw-bold">Gestor do Distrito do Vento</p>
+                    <p class="small text-secondary">Administra os recursos hídricos e as rotas comerciais das regiões áridas de Sunagakure.</p>
+                    <hr class="border-secondary">
+                    <a href="portal.html?vila=suna" class="btn btn-sm btn-outline-warning">Acessar Secretaria</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="kage-card">
+                    <div class="kage-icon"><i class="fa fa-bolt"></i></div>
+                    <h4 class="text-white">RAIKAGE</h4>
+                    <p class="text-warning small fw-bold">Diretor do Distrito do Trovão</p>
+                    <p class="small text-secondary">Coordena a infraestrutura de energia e o desenvolvimento de tecnologia pesada em Kumogakure.</p>
+                    <hr class="border-secondary">
+                    <a href="portal.html?vila=kumo" class="btn btn-sm btn-outline-warning">Acessar Secretaria</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="kage-card">
+                    <div class="kage-icon"><i class="fa fa-tint"></i></div>
+                    <h4 class="text-white">MIZUKAGE</h4>
+                    <p class="text-warning small fw-bold">Superintendente Marítimo</p>
+                    <p class="small text-secondary">Lidera a logística naval e as fronteiras aquáticas da Vila Oculta da Névoa.</p>
+                    <hr class="border-secondary">
+                    <a href="portal.html?vila=kiri" class="btn btn-sm btn-outline-warning">Acessar Secretaria</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="kage-card">
+                    <div class="kage-icon"><i class="fa fa-mountain"></i></div>
+                    <h4 class="text-white">TSUCHIKAGE</h4>
+                    <p class="text-warning small fw-bold">Secretário de Urbanismo</p>
+                    <p class="small text-secondary">Gestor das zonas de mineração e expansão estrutural das montanhas de Iwagakure.</p>
+                    <hr class="border-secondary">
+                    <a href="portal.html?vila=iwa" class="btn btn-sm btn-outline-warning">Acessar Secretaria</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="kage-card">
+                    <div class="kage-icon"><i class="fa fa-cloud-showers-heavy"></i></div>
+                    <h4 class="text-white">LÍDER DE AME</h4>
+                    <p class="text-warning small fw-bold">Comissário de Relações</p>
+                    <p class="small text-secondary">Responsável pela zona livre de comércio e diplomacia entre as grandes nações.</p>
+                    <hr class="border-secondary">
+                    <a href="portal.html?vila=ame" class="btn btn-sm btn-outline-warning">Acessar Secretaria</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <footer class="ntei-footer">
-    <div class="container text-center text-secondary small">
-        <p>© 2026 <b>Nuvem (NTEi)</b> - Gabinete de Gestão Estratégica</p>
+    <div class="container text-center">
+        <p>© 2026 <b>Nuvem (NTEi)</b> - Sistema Municipal Educacional do Núcleo de Tecnologia e Inovação</p>
+        <div class="mt-3">
+            <a href="#" class="text-secondary mx-2 text-decoration-none small">Termos de Uso</a>
+            <a href="#" class="text-secondary mx-2 text-decoration-none small">Privacidade</a>
+            <a href="#" class="text-secondary mx-2 text-decoration-none small">Suporte Técnico</a>
+        </div>
     </div>
 </footer>
 
