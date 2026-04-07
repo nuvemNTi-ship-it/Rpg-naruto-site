@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>NTEi - Portal de Gestão Shinobi</title>
+    <title>NTEi - Portal de Navegação Shinobi</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
     <style>
         :root { 
             --orange: #ff6600; 
-            --dark-gray: #111;
+            --dark-gray: #0a0a0a;
             --terminal-green: #00ff41;
         }
 
@@ -23,106 +23,103 @@
             overflow-x: hidden;
         }
 
-        /* Navbar */
+        /* Navbar fixa para transição entre Sede e Portal */
         .navbar-portal { 
-            background: rgba(0,0,0,0.9); 
-            border-bottom: 3px solid var(--orange); 
-            padding: 15px 0; 
+            background: rgba(0,0,0,0.95); 
+            border-bottom: 2px solid var(--orange); 
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        /* Hero Section */
+        .nav-link { transition: 0.3s; letter-spacing: 1px; }
+        .nav-link:hover { color: var(--orange) !important; }
+
+        /* Hero do Portal */
         .hero-portal { 
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://images.alphacoders.com/161/161471.jpg'); 
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.4)), url('https://images.alphacoders.com/161/161471.jpg'); 
             background-size: cover; 
             background-position: center;
-            padding: 80px 0; 
+            padding: 100px 0 60px; 
             text-align: center; 
-            border-bottom: 1px solid #333;
         }
 
-        /* Cards das Vilas */
+        /* Grid de Vilas */
         .vila-card {
-            background: var(--dark-gray);
-            border: 1px solid #333;
-            border-radius: 15px;
-            padding: 30px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 25px;
             height: 100%;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
         }
 
         .vila-card:hover {
             border-color: var(--orange);
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2);
+            transform: translateY(-8px);
+            background: #161616;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
         .vila-icon {
-            font-size: 50px;
+            font-size: 45px;
             color: var(--orange);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .kage-badge {
-            background: var(--orange);
-            color: #000;
+        .kage-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--orange);
             font-weight: 800;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-bottom: 15px;
+            display: block;
+            margin-bottom: 5px;
         }
 
-        /* Área Secreta SMTEI */
-        #area-smtei {
-            display: none; /* Escondido por padrão */
+        /* Painel Secreto SMTEI */
+        #painel-smtei {
+            display: none;
             background: #050505;
-            border: 2px solid var(--terminal-green);
-            font-family: 'Courier New', monospace;
-            padding: 30px;
-            margin-top: 50px;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
-        }
-
-        .terminal-header {
-            color: var(--terminal-green);
-            border-bottom: 1px solid var(--terminal-green);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-        }
-
-        .msg-zap {
-            background: rgba(0, 255, 65, 0.05);
-            border-left: 3px solid var(--terminal-green);
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* Botão Escondido no Footer */
-        .secret-trigger {
-            cursor: default;
-            color: #222; /* Cor quase igual ao fundo do rodapé */
-            transition: 0.3s;
-            border: none;
-            background: none;
-            font-size: 10px;
-        }
-        
-        .secret-trigger:hover { color: var(--orange); }
-
-        textarea.form-control {
-            background: #000;
             border: 1px solid var(--terminal-green);
-            color: var(--terminal-green);
+            font-family: 'Courier New', monospace;
+            padding: 25px;
+            margin-top: 40px;
+            border-radius: 8px;
         }
 
-        textarea.form-control:focus {
+        .terminal-text { color: var(--terminal-green); }
+        
+        .msg-box {
+            background: rgba(0, 255, 65, 0.05);
+            border-left: 2px solid var(--terminal-green);
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Botão Escondido */
+        .btn-invisible {
+            background: none;
+            border: none;
+            color: #1a1a1a;
+            font-size: 10px;
+            cursor: default;
+        }
+        .btn-invisible:hover { color: #333; }
+
+        .form-terminal {
             background: #000;
+            border: 1px solid #333;
+            color: var(--terminal-green);
+            border-radius: 4px;
+        }
+        .form-terminal:focus {
+            background: #000;
+            border-color: var(--terminal-green);
             color: var(--terminal-green);
             box-shadow: none;
-            border-color: var(--orange);
         }
     </style>
 </head>
@@ -130,142 +127,125 @@
 
     <nav class="navbar navbar-expand navbar-portal">
         <div class="container justify-content-center">
-            <a href="#" class="nav-link px-3 text-white">INÍCIO</a>
-            <a href="#" class="nav-link px-3 text-white">SEDE</a>
-            <a href="#" class="nav-link px-3 text-warning fw-bold">PORTAL</a>
+            <a href="index.html" class="nav-link px-4 text-white">INÍCIO</a>
+            <a href="sede.html" class="nav-link px-4 text-white">SEDE (ADMIN)</a>
+            <a href="portal.html" class="nav-link px-4 text-warning fw-bold">PORTAL (MAPA)</a>
         </div>
     </nav>
 
     <div class="hero-portal">
-        <h1 style="font-family:'Oswald'; font-size: 3.5rem;">GESTÃO DE NAÇÕES</h1>
-        <p class="text-white-50">Selecione uma Vila Oculta para acessar os dados diplomáticos</p>
+        <h1 style="font-family:'Oswald'; letter-spacing: 4px;">SISTEMA DE MAPEAMENTO</h1>
+        <p class="text-white-50">Inteligência NTEi: Selecione a Vila para ver os dados de inteligência</p>
     </div>
 
     <div class="container py-5">
         <div class="row g-4">
             
             <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center">
-                    <div class="vila-icon"><i class="fa fa-leaf"></i></div>
-                    <span class="kage-badge">7º HOKAGE</span>
-                    <h3 style="font-family: 'Oswald';">KONOHAGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Folha, situada no País do Fogo. Conhecida por sua "Vontade do Fogo" e por produzir os ninjas mais talentosos da história.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Temperado / Florestas</small>
+                <div class="vila-card">
+                    <span class="kage-title">Líder: 7º Hokage</span>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-leaf vila-icon me-3"></i>
+                        <h3 class="m-0" style="font-family:'Oswald';">KONOHA</h3>
+                    </div>
+                    <p class="small text-white-50">Vila Oculta da Folha. Foco em equilíbrio militar e diplomacia. Clima temperado com florestas densas.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center">
-                    <div class="vila-icon"><i class="fa fa-sun"></i></div>
-                    <span class="kage-badge">5º KAZEKAGE</span>
-                    <h3 style="font-family: 'Oswald';">SUNAGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Areia, no País do Vento. Especialistas em técnicas de vento e manipulação de marionetes em terreno desértico.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Árido / Deserto</small>
+                <div class="vila-card">
+                    <span class="kage-title">Líder: 5º Kazekage</span>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-sun vila-icon me-3"></i>
+                        <h3 class="m-0" style="font-family:'Oswald';">SUNA</h3>
+                    </div>
+                    <p class="small text-white-50">Vila Oculta da Areia. Defesa absoluta baseada em terreno árido e tempestades de areia constantes.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center">
-                    <div class="vila-icon"><i class="fa fa-bolt"></i></div>
-                    <span class="kage-badge">5º RAIKAGE</span>
-                    <h3 style="font-family: 'Oswald';">KUMOGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Nuvem. Localizada em altas montanhas, destaca-se pelo seu poder militar bruto e domínio do elemento relâmpago.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Montanhoso / Raios</small>
+                <div class="vila-card">
+                    <span class="kage-title">Líder: 5º Raikage</span>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-bolt vila-icon me-3"></i>
+                        <h3 class="m-0" style="font-family:'Oswald';">KUMO</h3>
+                    </div>
+                    <p class="small text-white-50">Vila Oculta da Nuvem. Estratégia ofensiva baseada em altitude e tecnologia de ponta.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center">
-                    <div class="vila-icon"><i class="fa fa-water"></i></div>
-                    <span class="kage-badge">6º MIZUKAGE</span>
-                    <h3 style="font-family: 'Oswald';">KIRIGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Névoa. Situada no País da Água, famosa pelos lendários Sete Espadachins da Névoa e jutsus aquáticos.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Úmido / Marítimo</small>
+                <div class="vila-card">
+                    <span class="kage-title">Líder: 6º Mizukage</span>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-tint vila-icon me-3"></i>
+                        <h3 class="m-0" style="font-family:'Oswald';">KIRI</h3>
+                    </div>
+                    <p class="small text-white-50">Vila Oculta da Névoa. Especialistas em infiltração marítima e operações silenciosas sob neblina.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center">
-                    <div class="vila-icon"><i class="fa fa-mountain"></i></div>
-                    <span class="kage-badge">4º TSUCHIKAGE</span>
-                    <h3 style="font-family: 'Oswald';">IWAGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Pedra. Cercada por cadeias rochosas, seus ninjas possuem uma lealdade inquebrável e domínio sobre a terra.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Pedregoso / Montanhas</small>
+                <div class="vila-card">
+                    <span class="kage-title">Líder: 4º Tsuchikage</span>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-mountain vila-icon me-3"></i>
+                        <h3 class="m-0" style="font-family:'Oswald';">IWA</h3>
+                    </div>
+                    <p class="small text-white-50">Vila Oculta da Pedra. Resistência inabalável. Ninjas treinados em táticas de cerco e defesa terrestre.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center" style="border-style: dashed;">
-                    <div class="vila-icon" style="color: #6610f2;"><i class="fa fa-music"></i></div>
-                    <span class="kage-badge" style="background: #6610f2; color: #fff;">DESCONHECIDO</span>
-                    <h3 style="font-family: 'Oswald';">OTOGAKURE</h3>
-                    <p class="text-white-50">Vila Oculta do Som. Criada como um laboratório de experimentos, é cercada de mistérios e jutsus proibidos.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-skull"></i> Status: Alerta de Perigo</small>
+                <div class="vila-card" style="border-color: #331144;">
+                    <span class="kage-title" style="color: #8844ff;">Líder: Desconhecido</span>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-music vila-icon me-3" style="color: #8844ff;"></i>
+                        <h3 class="m-0" style="font-family:'Oswald';">OTO</h3>
+                    </div>
+                    <p class="small text-white-50">Vila Oculta do Som. Área de risco. Sinais de atividade experimental detectados recentemente.</p>
                 </div>
             </div>
-
         </div>
 
-        <div id="area-smtei">
-            <div class="terminal-header d-flex justify-content-between align-items-center">
-                <h3><i class="fas fa-microchip"></i> ACESSO RESTRITO SMTEI v2.0</h3>
-                <span class="badge bg-success">ONLINE</span>
+        <div id="painel-smtei">
+            <h5 class="terminal-text mb-3"><i class="fas fa-terminal"></i> SMTEI_INTELLIGENCE_RECEPTOR</h5>
+            <div id="logs-zap" class="mb-3">
+                <div class="msg-box terminal-text">Aguardando novos dados do WhatsApp...</div>
             </div>
-            
-            <div id="mural-avisos" class="mb-4">
-                <div class="msg-zap">
-                    <strong>[INTEL-01]:</strong> Bem-vindo, Administrador. O sistema de avisos WhatsApp está ativo.
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <textarea id="textoZap" class="form-control" rows="2" placeholder="Cole aqui o aviso recebido no WhatsApp..."></textarea>
-                </div>
-                <div class="col-md-2">
-                    <button onclick="enviarAviso()" class="btn btn-warning w-100 h-100 fw-bold">POSTAR</button>
-                </div>
+            <div class="input-group">
+                <input type="text" id="inputZap" class="form-control form-terminal" placeholder="Cole o aviso aqui...">
+                <button onclick="salvarAviso()" class="btn btn-outline-success">SINCRONIZAR</button>
             </div>
         </div>
     </div>
 
-    <footer class="text-center py-5 text-white-50 border-top border-secondary mt-5">
-        <p>Desenvolvido por Nuvem Shinobi © 2026</p>
-        <button class="secret-trigger" onclick="abrirSMTEI()">.</button>
+    <footer class="text-center py-4 border-top border-secondary mt-5">
+        <p class="text-white-50 mb-0">Nuvem Shinobi &copy; 2026</p>
+        <button class="btn-invisible" onclick="toggleSMTEI()">.</button>
     </footer>
 
     <script>
-        function abrirSMTEI() {
-            const painel = document.getElementById('area-smtei');
-            if(painel.style.display === 'block') {
-                painel.style.display = 'none';
-            } else {
-                painel.style.display = 'block';
-                painel.scrollIntoView({ behavior: 'smooth' });
-                console.log("Acesso SMTEI autorizado.");
-            }
+        // Função para mostrar/esconder o terminal
+        function toggleSMTEI() {
+            const painel = document.getElementById('painel-smtei');
+            painel.style.display = (painel.style.display === 'block') ? 'none' : 'block';
+            if(painel.style.display === 'block') painel.scrollIntoView({behavior: 'smooth'});
         }
 
-        function enviarAviso() {
-            const input = document.getElementById('textoZap');
-            const mural = document.getElementById('mural-avisos');
-            
-            if(input.value.trim() !== "") {
-                const data = new Date();
-                const hora = data.getHours() + ":" + data.getMinutes();
+        // Função para postar os avisos do WhatsApp
+        function salvarAviso() {
+            const texto = document.getElementById('inputZap').value;
+            if(texto.trim() !== "") {
+                const logs = document.getElementById('logs-zap');
+                const timestamp = new Date().toLocaleTimeString();
                 
                 const novaMsg = document.createElement('div');
-                novaMsg.className = 'msg-zap';
-                novaMsg.innerHTML = `<strong>[ZAP-SYNC - ${hora}]:</strong> ${input.value}`;
+                novaMsg.className = 'msg-box terminal-text';
+                novaMsg.innerHTML = `<strong>[REC_DATA_${timestamp}]:</strong> ${texto}`;
                 
-                mural.prepend(novaMsg);
-                input.value = "";
+                logs.prepend(novaMsg);
+                document.getElementById('inputZap').value = "";
             }
         }
     </script>
