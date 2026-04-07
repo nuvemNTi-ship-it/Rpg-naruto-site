@@ -2,271 +2,216 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>NTEi - Portal de Gestão Shinobi</title>
+    <title>NTEi - Portal de Gestão Original</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        :root { 
-            --orange: #ff6600; 
-            --dark-gray: #111;
-            --terminal-green: #00ff41;
-        }
+        :root { --primary: #06A3DA; --secondary: #F57C00; --dark: #14141F; --light: #F0F5FB; }
+        
+        body { background-color: #f4f7f9; font-family: 'Nunito', sans-serif; color: #444; }
 
-        body { 
-            background: #000; 
-            color: #fff; 
-            font-family: 'Nunito', sans-serif; 
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        .navbar-portal { 
-            background: rgba(0,0,0,0.9); 
-            border-bottom: 3px solid var(--orange); 
-            padding: 15px 0; 
-        }
-
-        /* Hero Section */
-        .hero-portal { 
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://images.alphacoders.com/161/161471.jpg'); 
-            background-size: cover; 
+        /* Estilo Original da Navbar */
+        .navbar-portal { background: #fff; border-bottom: 4px solid var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        
+        /* Banner Original */
+        .hero-section {
+            background: linear-gradient(rgba(6, 163, 218, 0.8), rgba(6, 163, 218, 0.8)), url('https://www.santanadeparnaiba.sp.gov.br/portal/assets/img/slider/slide1.jpg');
+            background-size: cover;
             background-position: center;
-            padding: 80px 0; 
-            text-align: center; 
-            border-bottom: 1px solid #333;
+            padding: 80px 0;
+            color: #fff;
+            text-align: center;
         }
 
-        /* Cards das Vilas */
-        .vila-card {
-            background: var(--dark-gray);
-            border: 1px solid #333;
-            border-radius: 15px;
-            padding: 30px;
+        /* Organização dos Cards das Vilas */
+        .vila-box {
+            background: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 5px solid #ddd;
+            transition: 0.3s;
             height: 100%;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
         }
+        .vila-box:hover { border-bottom-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .vila-icon { font-size: 3rem; color: var(--primary); margin-bottom: 15px; }
+        .kage-name { color: var(--secondary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
 
-        .vila-card:hover {
-            border-color: var(--orange);
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2);
-        }
-
-        .vila-icon {
-            font-size: 50px;
-            color: var(--orange);
-            margin-bottom: 20px;
-        }
-
-        .kage-badge {
-            background: var(--orange);
-            color: #000;
-            font-weight: 800;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-block;
+        /* Mural de Avisos (Onde as matérias aparecem) */
+        .news-item {
+            background: #fff;
+            border-left: 5px solid var(--secondary);
+            padding: 20px;
             margin-bottom: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            animation: slideIn 0.5s ease-out;
         }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
 
-        /* Área Secreta SMTEI */
-        #area-smtei {
-            display: none; /* Escondido por padrão */
-            background: #050505;
-            border: 2px solid var(--terminal-green);
-            font-family: 'Courier New', monospace;
+        /* Painel Administrativo Secreto */
+        #admin-panel {
+            display: none;
+            background: #222;
+            color: #fff;
             padding: 30px;
             margin-top: 50px;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+            border-radius: 10px;
+            border: 2px solid var(--primary);
         }
+        .form-control-admin { background: #333; border: 1px solid #444; color: #fff; }
+        .form-control-admin:focus { background: #333; color: #fff; border-color: var(--primary); box-shadow: none; }
 
-        .terminal-header {
-            color: var(--terminal-green);
-            border-bottom: 1px solid var(--terminal-green);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-        }
-
-        .msg-zap {
-            background: rgba(0, 255, 65, 0.05);
-            border-left: 3px solid var(--terminal-green);
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* Botão Escondido no Footer */
-        .secret-trigger {
-            cursor: default;
-            color: #222; /* Cor quase igual ao fundo do rodapé */
-            transition: 0.3s;
-            border: none;
-            background: none;
-            font-size: 10px;
-        }
-        
-        .secret-trigger:hover { color: var(--orange); }
-
-        textarea.form-control {
-            background: #000;
-            border: 1px solid var(--terminal-green);
-            color: var(--terminal-green);
-        }
-
-        textarea.form-control:focus {
-            background: #000;
-            color: var(--terminal-green);
-            box-shadow: none;
-            border-color: var(--orange);
-        }
+        .secret-link { cursor: default; user-select: none; color: inherit; text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand navbar-portal">
-        <div class="container justify-content-center">
-            <a href="#" class="nav-link px-3 text-white">INÍCIO</a>
-            <a href="#" class="nav-link px-3 text-white">SEDE</a>
-            <a href="#" class="nav-link px-3 text-warning fw-bold">PORTAL</a>
+    <nav class="navbar navbar-expand-lg navbar-portal px-4">
+        <div class="container">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <h2 class="m-0 text-primary"><i class="fa fa-university me-2"></i>NTEi <span class="text-dark">PORTAL</span></h2>
+            </a>
+            <div class="ms-auto d-none d-sm-block">
+                <span class="text-muted small"><i class="fa fa-calendar-alt me-1"></i> Sistema de Monitoramento Shinobi 2026</span>
+            </div>
         </div>
     </nav>
 
-    <div class="hero-portal">
-        <h1 style="font-family:'Oswald'; font-size: 3.5rem;">GESTÃO DE NAÇÕES</h1>
-        <p class="text-white-50">Selecione uma Vila Oculta para acessar os dados diplomáticos</p>
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Portal de Gestão de Vilas</h1>
+            <p class="lead">Informações Oficiais e Avisos de Segurança das Nações Unidas</p>
+        </div>
     </div>
 
     <div class="container py-5">
-        <div class="row g-4">
-            
-            <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center">
-                    <div class="vila-icon"><i class="fa fa-leaf"></i></div>
-                    <span class="kage-badge">7º HOKAGE</span>
-                    <h3 style="font-family: 'Oswald';">KONOHAGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Folha, situada no País do Fogo. Conhecida por sua "Vontade do Fogo" e por produzir os ninjas mais talentosos da história.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Temperado / Florestas</small>
+        
+        <div class="row mb-5">
+            <div class="col-12">
+                <h4 class="mb-4 border-bottom pb-2"><i class="fa fa-newspaper text-primary me-2"></i>Mural de Avisos e Matérias</h4>
+                <div id="feed-noticias">
+                    <div class="news-item">
+                        <span class="badge bg-primary mb-2">SISTEMA</span>
+                        <h5>Bem-vindo ao Novo Portal NTEi</h5>
+                        <p class="mb-0 text-muted">Utilize o painel para gerenciar as informações das vilas e comunicados oficiais.</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center">
-                    <div class="vila-icon"><i class="fa fa-sun"></i></div>
-                    <span class="kage-badge">5º KAZEKAGE</span>
-                    <h3 style="font-family: 'Oswald';">SUNAGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Areia, no País do Vento. Especialistas em técnicas de vento e manipulação de marionetes em terreno desértico.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Árido / Deserto</small>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center">
-                    <div class="vila-icon"><i class="fa fa-bolt"></i></div>
-                    <span class="kage-badge">5º RAIKAGE</span>
-                    <h3 style="font-family: 'Oswald';">KUMOGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Nuvem. Localizada em altas montanhas, destaca-se pelo seu poder militar bruto e domínio do elemento relâmpago.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Montanhoso / Raios</small>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center">
-                    <div class="vila-icon"><i class="fa fa-water"></i></div>
-                    <span class="kage-badge">6º MIZUKAGE</span>
-                    <h3 style="font-family: 'Oswald';">KIRIGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Névoa. Situada no País da Água, famosa pelos lendários Sete Espadachins da Névoa e jutsus aquáticos.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Úmido / Marítimo</small>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center">
-                    <div class="vila-icon"><i class="fa fa-mountain"></i></div>
-                    <span class="kage-badge">4º TSUCHIKAGE</span>
-                    <h3 style="font-family: 'Oswald';">IWAGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Pedra. Cercada por cadeias rochosas, seus ninjas possuem uma lealdade inquebrável e domínio sobre a terra.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Pedregoso / Montanhas</small>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="vila-card text-center" style="border-style: dashed;">
-                    <div class="vila-icon" style="color: #6610f2;"><i class="fa fa-music"></i></div>
-                    <span class="kage-badge" style="background: #6610f2; color: #fff;">DESCONHECIDO</span>
-                    <h3 style="font-family: 'Oswald';">OTOGAKURE</h3>
-                    <p class="text-white-50">Vila Oculta do Som. Criada como um laboratório de experimentos, é cercada de mistérios e jutsus proibidos.</p>
-                    <hr class="border-secondary">
-                    <small class="text-warning"><i class="fa fa-skull"></i> Status: Alerta de Perigo</small>
-                </div>
-            </div>
-
         </div>
 
-        <div id="area-smtei">
-            <div class="terminal-header d-flex justify-content-between align-items-center">
-                <h3><i class="fas fa-microchip"></i> ACESSO RESTRITO SMTEI v2.0</h3>
-                <span class="badge bg-success">ONLINE</span>
-            </div>
-            
-            <div id="mural-avisos" class="mb-4">
-                <div class="msg-zap">
-                    <strong>[INTEL-01]:</strong> Bem-vindo, Administrador. O sistema de avisos WhatsApp está ativo.
+        <h4 class="mb-4 border-bottom pb-2"><i class="fa fa-map-marked-alt text-primary me-2"></i>Departamentos (Vilas Ocultas)</h4>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="vila-box">
+                    <div class="vila-icon"><i class="fa fa-leaf"></i></div>
+                    <span class="kage-name">7º Hokage</span>
+                    <h4>Konohagakure</h4>
+                    <p class="text-muted small">Vila Oculta da Folha. Administração Central e Inteligência Estratégica do País do Fogo.</p>
                 </div>
             </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="vila-box">
+                    <div class="vila-icon"><i class="fa fa-sun"></i></div>
+                    <span class="kage-name">5º Kazekage</span>
+                    <h4>Sunagakure</h4>
+                    <p class="text-muted small">Vila Oculta da Areia. Especialistas em Defesa Territorial e Logística no País do Vento.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="vila-box">
+                    <div class="vila-icon"><i class="fa fa-bolt"></i></div>
+                    <span class="kage-name">5º Raikage</span>
+                    <h4>Kumogakure</h4>
+                    <p class="text-muted small">Vila Oculta da Nuvem. Desenvolvimento de Armamentos e Força Militar do País do Trovão.</p>
+                </div>
+            </div>
+        </div>
 
-            <div class="row">
-                <div class="col-md-10">
-                    <textarea id="textoZap" class="form-control" rows="2" placeholder="Cole aqui o aviso recebido no WhatsApp..."></textarea>
+        <div id="admin-panel" class="shadow-lg">
+            <h3 class="text-primary mb-4"><i class="fa fa-user-lock me-2"></i>Área do Administrador (SMTEI)</h3>
+            <div class="row g-3">
+                <div class="col-12">
+                    <label class="form-label">Conteúdo da Nova Matéria ou Aviso (Cole do WhatsApp)</label>
+                    <textarea id="inputMateria" class="form-control form-control-admin" rows="5" placeholder="Digite ou cole as informações aqui..."></textarea>
                 </div>
-                <div class="col-md-2">
-                    <button onclick="enviarAviso()" class="btn btn-warning w-100 h-100 fw-bold">POSTAR</button>
+                <div class="col-md-6">
+                    <label class="form-label">Título da Postagem</label>
+                    <input type="text" id="tituloMateria" class="form-control form-control-admin" placeholder="Ex: Aviso Urgente">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Categoria</label>
+                    <select id="categoriaMateria" class="form-select form-control-admin">
+                        <option value="AVISO">Aviso de Segurança</option>
+                        <option value="MATÉRIA">Nova Matéria</option>
+                        <option value="REUNIÃO">Convocação de Kages</option>
+                    </select>
+                </div>
+                <div class="col-12 text-end mt-4">
+                    <button onclick="publicarNoticia()" class="btn btn-primary px-5 fw-bold">PRODUZIR E PUBLICAR</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="text-center py-5 text-white-50 border-top border-secondary mt-5">
-        <p>Desenvolvido por Nuvem Shinobi © 2026</p>
-        <button class="secret-trigger" onclick="abrirSMTEI()">.</button>
+    <footer class="bg-dark text-white-50 py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">Prefeitura de Santana de Parnaíba - <span id="secret-trigger" class="secret-link">Plataforma de Gestão Shinobi</span> © 2026</p>
+        </div>
     </footer>
 
     <script>
-        function abrirSMTEI() {
-            const painel = document.getElementById('area-smtei');
-            if(painel.style.display === 'block') {
-                painel.style.display = 'none';
-            } else {
-                painel.style.display = 'block';
-                painel.scrollIntoView({ behavior: 'smooth' });
-                console.log("Acesso SMTEI autorizado.");
+        // Lógica do Clique Secreto: Clique 3 vezes em "Shinobi" para abrir o painel
+        let count = 0;
+        document.getElementById('secret-trigger').addEventListener('click', function() {
+            count++;
+            if (count === 3) {
+                document.getElementById('admin-panel').style.display = 'block';
+                document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+                alert("Acesso Restrito SMTEI Liberado!");
+                count = 0;
             }
-        }
+        });
 
-        function enviarAviso() {
-            const input = document.getElementById('textoZap');
-            const mural = document.getElementById('mural-avisos');
-            
-            if(input.value.trim() !== "") {
-                const data = new Date();
-                const hora = data.getHours() + ":" + data.getMinutes();
-                
-                const novaMsg = document.createElement('div');
-                novaMsg.className = 'msg-zap';
-                novaMsg.innerHTML = `<strong>[ZAP-SYNC - ${hora}]:</strong> ${input.value}`;
-                
-                mural.prepend(novaMsg);
-                input.value = "";
+        // Função para produzir a postagem na hora
+        function publicarNoticia() {
+            const titulo = document.getElementById('tituloMateria').value;
+            const texto = document.getElementById('inputMateria').value;
+            const categoria = document.getElementById('categoriaMateria').value;
+            const mural = document.getElementById('feed-noticias');
+
+            if (!texto || !titulo) {
+                alert("Por favor, preencha o título e o conteúdo.");
+                return;
             }
+
+            // Criar o elemento da notícia
+            const div = document.createElement('div');
+            div.className = 'news-item';
+            
+            const badgeClass = categoria === 'AVISO' ? 'bg-danger' : 'bg-success';
+            const dataAtual = new Date().toLocaleDateString('pt-BR');
+
+            div.innerHTML = `
+                <div class="d-flex justify-content-between">
+                    <span class="badge ${badgeClass} mb-2">${categoria}</span>
+                    <small class="text-muted">${dataAtual}</small>
+                </div>
+                <h5>${titulo}</h5>
+                <p class="mb-0 text-dark">${texto.replace(/\n/g, '<br>')}</p>
+            `;
+
+            // Adicionar no topo do mural
+            mural.prepend(div);
+
+            // Limpar formulário
+            document.getElementById('tituloMateria').value = "";
+            document.getElementById('inputMateria').value = "";
+            alert("Matéria produzida com sucesso!");
         }
     </script>
 </body>
