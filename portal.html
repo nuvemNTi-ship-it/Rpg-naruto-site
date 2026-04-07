@@ -12,28 +12,32 @@
         body { background: #000; color: #fff; font-family: 'Nunito', sans-serif; overflow-x: hidden; }
         .navbar-portal { background: rgba(0,0,0,0.9); border-bottom: 3px solid var(--orange); padding: 15px 0; }
         .hero-portal { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('https://images.alphacoders.com/161/161471.jpg'); background-size: cover; background-position: center; padding: 80px 0; text-align: center; border-bottom: 1px solid #333; }
-        .vila-card { background: var(--dark-gray); border: 1px solid #333; border-radius: 15px; padding: 30px; transition: 0.4s; }
+        .vila-card { background: var(--dark-gray); border: 1px solid #333; border-radius: 15px; padding: 30px; height: 100%; transition: 0.4s; position: relative; overflow: hidden; }
         .vila-card:hover { border-color: var(--orange); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2); }
         .vila-icon { font-size: 50px; color: var(--orange); margin-bottom: 20px; }
         .kage-badge { background: var(--orange); color: #000; font-weight: 800; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 15px; }
-        #area-smtei { display: none; background: #050505; border: 2px solid var(--terminal-green); font-family: 'Courier New', monospace; padding: 30px; margin-top: 50px; }
+        #area-smtei { display: none; background: #050505; border: 2px solid var(--terminal-green); font-family: 'Courier New', monospace; padding: 30px; margin-top: 50px; box-shadow: 0 0 20px rgba(0, 255, 65, 0.2); }
         .terminal-header { color: var(--terminal-green); border-bottom: 1px solid var(--terminal-green); margin-bottom: 20px; padding-bottom: 10px; }
         .msg-zap { background: rgba(0, 255, 65, 0.05); border-left: 3px solid var(--terminal-green); padding: 10px; margin-bottom: 15px; }
         .secret-trigger { cursor: default; color: #222; border: none; background: none; font-size: 10px; }
+        .secret-trigger:hover { color: var(--orange); }
+        textarea.form-control { background: #000; border: 1px solid var(--terminal-green); color: var(--terminal-green); }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-portal">
         <div class="container justify-content-center">
-            <a href="index.html" class="nav-link px-3 text-white">INÍCIO</a>
-            <a href="sede.html" class="nav-link px-3 text-white">SEDE</a>
-            <a href="portal.html" class="nav-link px-3 text-warning fw-bold">PORTAL</a>
+            <a href="index.html" class="nav-link px-3 text-white text-decoration-none">INÍCIO</a>
+            <a href="sede.html" class="nav-link px-3 text-white text-decoration-none">SEDE</a>
+            <a href="portal.html" class="nav-link px-3 text-warning fw-bold text-decoration-none">PORTAL</a>
         </div>
     </nav>
+
     <div class="hero-portal">
         <h1 style="font-family:'Oswald'; font-size: 3.5rem;">GESTÃO DE NAÇÕES</h1>
         <p class="text-white-50">Selecione uma Vila Oculta para acessar os dados diplomáticos</p>
     </div>
+
     <div class="container py-5">
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">
@@ -41,28 +45,49 @@
                     <div class="vila-icon"><i class="fa fa-leaf"></i></div>
                     <span class="kage-badge">7º HOKAGE</span>
                     <h3 style="font-family: 'Oswald';">KONOHAGAKURE</h3>
-                    <p class="text-white-50">A Vila Oculta da Folha, situada no País do Fogo.</p>
+                    <p class="text-white-50">A Vila Oculta da Folha, situada no País do Fogo. Conhecida pela "Vontade do Fogo".</p>
+                    <hr class="border-secondary">
+                    <small class="text-warning"><i class="fa fa-map-marker-alt"></i> Clima: Temperado</small>
                 </div>
             </div>
             </div>
+
         <div id="area-smtei">
             <div class="terminal-header d-flex justify-content-between align-items-center">
                 <h3><i class="fas fa-microchip"></i> ACESSO RESTRITO SMTEI v2.0</h3>
+                <span class="badge bg-success">ONLINE</span>
             </div>
             <div id="mural-avisos" class="mb-4">
-                <div class="msg-zap"><strong>[INTEL]:</strong> Sistema Ativo.</div>
+                <div class="msg-zap"><strong>[INTEL-01]:</strong> Bem-vindo, Administrador. Sistema ativo.</div>
+            </div>
+            <div class="row">
+                <div class="col-md-10"><textarea id="textoZap" class="form-control" rows="2" placeholder="Cole o aviso aqui..."></textarea></div>
+                <div class="col-md-2"><button onclick="enviarAviso()" class="btn btn-warning w-100 h-100 fw-bold">POSTAR</button></div>
             </div>
         </div>
     </div>
+
     <footer class="text-center py-5 text-white-50 border-top border-secondary mt-5">
         <p>Desenvolvido por Nuvem Shinobi © 2026</p>
         <button class="secret-trigger" onclick="abrirSMTEI()">.</button>
     </footer>
+
     <script>
         function abrirSMTEI() {
             const painel = document.getElementById('area-smtei');
             painel.style.display = painel.style.display === 'block' ? 'none' : 'block';
             if(painel.style.display === 'block') painel.scrollIntoView({ behavior: 'smooth' });
+        }
+        function enviarAviso() {
+            const input = document.getElementById('textoZap');
+            const mural = document.getElementById('mural-avisos');
+            if(input.value.trim() !== "") {
+                const novaMsg = document.createElement('div');
+                novaMsg.className = 'msg-zap';
+                novaMsg.innerHTML = `<strong>[ZAP-SYNC]:</strong> ${input.value}`;
+                mural.prepend(novaMsg);
+                input.value = "";
+            }
         }
     </script>
 </body>
